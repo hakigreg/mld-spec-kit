@@ -1,0 +1,19 @@
+# Concepts and fundamentals
+
+## The idea
+
+Spec-driven development starts by describing the behavior people need before deciding how to build it. Spec Kit packages this process as templates, project scripts, and coding-agent skills. Its core flow is **specify → plan → tasks → implement → converge**. The coding agent drafts or updates artifacts at each step, but a person still chooses the goal, reviews ambiguities, and judges whether the result is acceptable. A specification is useful because it gives reviewers a stable statement of intended behavior against which plans, tasks, and code can be compared. See [Spec Kit's SDD explanation](https://github.github.com/spec-kit/how-to/sdd.html) and [command reference](https://github.github.com/spec-kit/reference/agentic-sdd.html).
+
+## The pieces and their jobs
+
+The **Specify CLI** (`specify`) initializes a project and installs an integration for a coding agent. The CLI is used in a terminal for setup and management. The installed **skills** are invoked in the agent's chat. With Codex, their names use the form `$speckit-specify`, `$speckit-plan`, and so on. The CLI does not itself reason over a feature request or implement code; Codex performs that work while following the installed instructions. [Codex integration](https://github.github.com/spec-kit/integrations/codex.html).
+
+A **constitution** records project-wide principles and quality gates. A **feature spec** states what users need, with stories, testable requirements, acceptance scenarios, edge cases, and success criteria. The **plan** chooses technical means, including stack, structure, research decisions, data model, and interface contracts where needed. **Tasks** turn the plan into ordered, file-specific work. **Implementation** produces code and checks. **Convergence** compares implementation with the intended artifacts and can append remaining tasks. Optional clarification, checklist, and analysis steps help when a feature is ambiguous or complex. [Quickstart](https://github.github.com/spec-kit/quickstart.html).
+
+The files have different authority. If the intended greeting changes, update `spec.md` first; a code-only change would leave the documented promise stale. `plan.md` explains why this Lab uses Python. `tasks.md` maps that choice to `greet.py` and `verify_lab.py`. The local output is evidence that the implementation matches the current spec. The example's CLI contract states exact output and failure behavior. The active feature pointer in `.specify/feature.json` is independent of Git branch names, so the Lab can work without a Git repository. [Quickstart](https://github.github.com/spec-kit/quickstart.html).
+
+## Typical workflow and limits
+
+For a new feature, establish project principles, describe the behavior, resolve consequential ambiguity, plan the technical design, generate tasks, implement, and assess completeness. Review at each boundary. For a change to an existing feature, decide whether intent really changed, revise the spec, reconcile derived artifacts, implement, and check again. Spec Kit provides structure and prompts; it cannot guarantee that a generated requirement is correct, that an AI interpretation is safe, or that passing one check proves every scenario. Its core does not automatically synchronize all artifacts after a requirement edit. Teams choose how long to retain delivered specs. [Evolving specs](https://github.github.com/spec-kit/how-to/evolving-specs.html) · [Persisting specs](https://github.github.com/spec-kit/how-to/persisting-specs.html).
+
+This Lab demonstrates one complete, small trace: `Hello, Ada!` is promised in the spec, supported by a plan and task list, printed by the command, and checked by `verify_lab.py`. It does not demonstrate a production workflow, team review, version-control branches, or optional extensions.
